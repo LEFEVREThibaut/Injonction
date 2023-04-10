@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Responses;
+use App\Entity\Questionnaire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +22,9 @@ class ResponseController extends AbstractController
             $responses[$i] = explode(",", $responses[$i]);
         }
         var_dump($responses);
+        return $this->render('response.html.twig', [
+            'responses' => $responses,
+        ]);
     }
 }
 
