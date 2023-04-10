@@ -2,8 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+        <script src="{{'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}}"></script>
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,6 +17,21 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <nav>
+                <ul id="menu">
+                    <li><a href="/" class="active">L'injonction</a></li>
+                    <li><a href="questionnaire">Sondage</a></li>
+                    <li><a href="{}">Résultats</a></li>
+                </ul>
+                <ul id="lang">
+                    <li><a href="{}" class="active">FR</a></li>
+                    <li><a href="{}">EN</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% block body %}
+            <h1>{{title}}</h1>
+        {% endblock %}
     </body>
 </html>

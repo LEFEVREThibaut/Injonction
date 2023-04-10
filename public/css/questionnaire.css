@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --textcolor : #F0F0F0;
+    --text-black: #1c1c1c;
+    --text-menu: #0474b2;
+    --text-active: #6AC9FF;
+    --div-color: #1E1E1E;
+    --background-color: #005686;
+    font-family: Lato, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    cursor: default;
+}
+
+h1, h2, h2>span, h1>span{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+}
+
+main {
+    background-color: var(--div-color);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+}
+
+#tot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    height: 70%;
+    margin-top: 3%;
+    margin-left: 10rem;
+    gap: 10rem;
+}
+
+#introduction {
+    text-align: justify;
+    width: 90%;
+    margin: 4rem auto;
+    border-radius: 1rem;
+    padding: 1.4rem;
+    line-height: 1.5;
+    color: var(--textcolor);
+}
+
+.btn-primary {
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+#menu li:nth-of-type(2) a {
+    color: var(--text-menu);
+}
+
+#menu li:first-of-type a {
+    color: var(--textcolor);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}
+
+.h-captcha {
+    margin-top: 3rem;
+}
+
+img {
+    height: 60%;
+}

@@ -1,0 +1,41 @@
+{%extends 'base.html.twig'%}
+
+{%block title%}Accueil{%endblock%}
+
+{%block body%}
+    <div class="container">
+        <section>
+        <h1>Les hommes ne doivent pas montrer leurs <span class="bg-blue"> émotions !</span></h1>
+        <p id="pres">Vous avez aussi l'impression de subir cette injonction ? </br>Réalisez cette courte enquête d'une dizaine de minutes et vous serez surpris du taux de personnes concernées</p>
+        <a href="questionnaire" class="btn">Commencer l'enquête</a>
+        </section>
+        <img src="{{asset('pictures/004_logic_vs_feelings.svg')}}" alt="homme qui pleure">
+    </div>
+    <h2><span class="underline-black">Pourquoi</span> cette injonction ?</h2>
+    <div class="contain">
+    <p>L'injonction faite aux hommes de ne pas montrer leurs émotions peut avoir des conséquences négatives sur leur santé mentale et sur leurs relations avec les femmes. Refouler ses émotions peut causer des problèmes tels que l'anxiété, la dépression et le stress. 
+    </br></br>
+        Cela peut également rendre difficile la communication et la compréhension mutuelle. En discutant de cette injonction, on peut encourager une plus grande ouverture d'esprit et une plus grande acceptation de la diversité des comportements et des expériences individuelles. Cela peut également favoriser l'expression émotionnelle de chacun et contribuer à une plus grande égalité entre les sexes.</p>
+        <img src="{{asset('pictures/Anxiety.svg')}}" alt="homme qui pleure">
+
+    </div>
+    <div class="container_two">
+        <img src="{{asset('pictures/inspector.png')}}" alt="homme qui pleure">
+        <section>
+        <h2>Les <span class="color-blue">résultats</span> de l'enquête</h2>
+        <p>Il n'y a pas de honte à être curieux... Vous pouvez consulter notre dashboard quand vous le souhaitez (même si c'est toujours meiux de répondre à l'enquête avant !)</p>
+        <a href="{}" class="btn btn-dash">Voir le dashboard</a>
+        </section>
+    </div>
+
+    <div class="container_three">
+        <section>
+            <h2 id="titre-doc">Consulter la<span class="color-blue"> documentation </span></h2>
+            <p>Vous voulez utiliser nos données et découvrir la façon dont nous avons fonctionné ? 
+            </br>Notre API OpenSource est à votre disposition !</p>
+            <a href="{}" class="btn btn-api">Accéder à l'API</a>
+            </section>
+        <img src="{{asset('pictures/API_interface.png')}}" alt="API">
+    </div>
+
+{%endblock%}

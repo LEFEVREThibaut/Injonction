@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Lato, sans-serif;
+}
+
+:root {
+    --textcolor: #F0F0F0;
+    --background-av: #c8c8c8;
+    --text-black: #1c1c1c;
+    --text-menu: #0474b2;
+    --text-active: #6AC9FF;
+    --div-color: #1E1E1E;
+    --background-color: #005686;
+    --moove: 0;
+}
+
+form {
+    overflow: hidden;
+
+}
+
+body {
+    overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    cursor: default;
+}
+
+h1,
+h2,
+h2>span,
+h1>span {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+}
+
+main {
+    background-color: var(--div-color);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+}
+
+#menu {
+    position: relative;
+    z-index: 9;
+}
+
+#menu li:nth-of-type(2) a {
+    color: var(--text-menu);
+}
+
+#menu li:first-of-type a {
+    color: var(--textcolor);
+}
+
+h2 {
+    color: var(--textcolor);
+    margin-top: 5rem;
+    font-size: 2.5rem;
+    width: fit-content;
+    max-width: 70%;
+    text-align: left;
+    position: relative;
+    left: 15rem;
+    margin-bottom: 5rem;
+}
+
+#tot-av {
+    position: absolute;
+    width: 90%;
+    background-color: var(--background-av);
+    height: 1rem;
+    border-radius: 2rem;
+    margin-left: 5%;
+    margin-top: 1rem;
+}
+
+#av {
+    position: absolute;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    height: 1rem;
+    border-radius: 0.5rem;   
+}
+
+.glob {
+    display: flex;
+    margin-top: 3%;
+}
+
+input {
+    display: none;
+}
+
+#add {
+    left: -15rem;
+}
+
+label {
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+input:checked {
+    background-color: var(--text-menu);
+}
+
+.btn-primary {
+    height: fit-content;
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--text-menu);
+    background-color: var(--text-menu);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    position: absolute;
+    left: 70rem;
+    top: 30rem;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}
+
+
+#btn-secondary {
+    height: fit-content;
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--text-menu);
+    background-color: var(--text-menu);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    position: relative;
+    left: 68rem;
+    top: -25rem;
+}
+
+#btn-secondary:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}
+
+#btn-thirdy {
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--text-menu);
+    background-color: var(--text-menu);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#btn-thirdy:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}
+
+
+input:checked+label {
+    background-color: var(--text-menu);
+}
+
+.block {
+    height: 100vh;
+}
+
+.input-field {
+    color: var(--textcolor);
+    padding: 1rem 2rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--background-color);
+    background-color: var(--text-menu);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    display: inline;
+    cursor: pointer;
+    position: relative;
+    top: 1.5rem;
+    left: 20rem;
+    cursor: text;
+    text-transform: uppercase;
+}

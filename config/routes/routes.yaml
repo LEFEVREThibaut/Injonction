@@ -1,0 +1,9 @@
+questionnaire:
+    path: /questionnaire
+    controller: App\Controller\PostController::questionnaire
+
+
+questions:
+    path: /questions
+    controller: App\Controller\PostController::afficherQuestionnaire
+    

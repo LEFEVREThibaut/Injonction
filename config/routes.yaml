@@ -1,3 +1,18 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+questions:
+  path: /questions
+  controller: App\Controller\PostController::afficherQuestionnaire
+    
+
+# Path: config/routes.yaml
+# Compare this snippet from config/routes/routes.yaml:
+# home:
+#   path: /
+#   controller: App\Controller\ClasseTest::homepage
+#
+# controllers:
+#     resource: ../src/Controller/
+#     type: annotation

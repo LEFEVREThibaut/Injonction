@@ -1,0 +1,161 @@
+{%extends 'base.html.twig'%}
+
+{%block title%}Questionnaire{%endblock%}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/questions.css') }}">
+{% endblock %}
+
+
+{%block body%}
+    <main>
+        <div id="tot-av">
+            <div id="av">
+            </div>
+        </div>
+
+        {{ form_start(form.formulaire, {'attr': {'action': 'questions', 'method': 'POST'}})}}
+        {% for index, question in form.formulaire.vars.label %}
+        <section class="block"> 
+            <h2>{{question[0]}}</h2>
+            {% if question[1]|length > 1 %}
+
+                {% for l, reponses in question[1] %}
+                    <input type="radio" id="check{{index}}_{{ l }}" class="text-response" name="response" value="{{ reponses }}">
+                    <label for="check{{index}}_{{ l }}">{{ reponses }}</label>
+                {% endfor %}
+
+            {% else %}
+            <input id="add" class="input-field" type="number" name="response" maxlength="5">
+            {% endif %}
+
+        </section>
+        {% endfor %}
+
+        <div id="btn-secondary">Valider</div>
+        <section class="block">
+            <h2>Vous avez fini de répondre à ce questionnaire !</h2>
+            <a href="/" id="btn-thirdy">Voir les résultats</a>
+        </section>
+        {{ form_end(form.formulaire) }}
+        <div class="btn-primary">Suivant</div>
+
+        
+    </main>
+{%endblock%}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            monStockage = localStorage;
+            //localStorage.setItem('formulaire', '');
+            
+
+            let radios = document.querySelectorAll('input[type="radio"]');     
+            var i = 0;
+            let button = document.querySelector(".btn-primary");
+            let form = document.querySelector("form");
+            let style = getComputedStyle(document.documentElement).getPropertyValue("--moove");
+            var avance = getComputedStyle(document.documentElement).getPropertyValue("--avancement"); 
+            const nom = localStorage.getItem("nom");
+            const add = document.getElementById("add");
+            let response = [];
+            let regExp = new RegExp('^[0-9]{5}$');
+            let rang = localStorage.getItem('formulaire');
+            if(rang != null) {
+                response = JSON.parse(rang);
+                console.log(response.length);
+                if (response.length == 17) {
+                    style = response.length * -110;
+                    form.style.transform = `translateY(${style}vh)`;
+                    button.style.display = "none";
+                    document.getElementById("av").style.display = "none";
+                    document.getElementById("tot-av").style.display = "none"; 
+                }
+                else {
+                    style = response.length * -110;
+                    form.style.transform = `translateY(${style}vh)`;
+                    let test = (100/16) * response.length;
+                    document.getElementById("av").style.width = `${test}%`;
+                    button.style.display = "none";
+                }
+                
+            }
+            add.addEventListener("keypress", function(event) {
+                if (event.keyCode === 13) {
+                  event.preventDefault();
+                }
+              });
+
+            button.addEventListener("click", function(){
+                radios.forEach(radio => {
+                    if (radio.checked | add.value != "") {
+                        i++;
+                        if (add.value != "") {
+                            if(regExp.test(add.value)) {
+                                response.push(add.value);
+                                add.value = "";
+                            }
+                            else {
+                                alert("Veuillez entrer un code postal valide");
+                                add.value = "";
+                            }
+                        }
+                        else if (radio.checked) {
+                            response.push(radio.value);
+                            radio.checked = false;
+                        }
+                        var responseString = JSON.stringify(response);
+                        monStockage.setItem('formulaire', responseString);
+                        if (i === response.length) {
+                            if(style > -1900) {
+                                style = response.length * -110;
+                                form.style.transform = `translateY(${style}vh)`;
+                            }
+                            if(style == -1760) {
+                                button.style.display = "none";
+                            }
+                            let test = (100/16) * response.length;
+                            document.getElementById("av").style.width = `${test}%`;
+                        }
+                        else {
+                            i--;
+                        }
+                    }
+                });    
+            })
+            let envoie = document.querySelector("#btn-secondary");
+            envoie.addEventListener("click", function() {
+                radios.forEach(radio => {
+                    if (radio.checked) {
+                        i++;
+                        response.push(radio.value);
+                        radio.checked = false;
+                        var responseString = JSON.stringify(response);
+                        monStockage.setItem('formulaire', responseString);
+                        style = response.length * -110;
+                        form.style.transform = `translateY(${style}vh)`;
+                        button.style.display = "none";
+                        document.getElementById("av").style.display = "none";
+                        document.getElementById("tot-av").style.display = "none"; 
+                    }
+                }); 
+                let tableau = localStorage.getItem('formulaire');
+                if (tableau != null) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/questions",
+                        data: { tableau: tableau },
+                        success: function(response) {
+                            console.log(response);
+                        }
+                    });    
+                }
+            })
+            
+        })
+
+        
+
+    </script>
+{% endblock %}

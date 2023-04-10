@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --textcolor : #F0F0F0;
+    --text-black: #1c1c1c;
+    --text-menu: #0474b2;
+    --text-active: #6AC9FF;
+    --div-color: #1E1E1E;
+    --background-color: #005686;
+    font-family: Lato, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    cursor: default;
+}
+
+h1, h2, h2>span, h1>span{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bold;
+}
+
+body {
+    background: #F5F5F5;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    background-color: var(--div-color);
+    height: 10vh;
+    padding-top: 2rem;
+}
+ul {
+    list-style: none;
+    display: flex;
+}
+
+#menu {
+    gap: 4rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#lang {
+    position: absolute;
+    top: 2rem;
+    right: 4rem;
+    gap: 3rem;
+    width: fit-content;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--textcolor);
+    font-weight: 900;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    background-color: var(--div-color);
+    height: 83.5vh;
+    padding: 0 4rem;
+    border-radius: 0 0 80px 80px;
+    color: var(--textcolor);
+}
+
+.contain {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    height: 70%;
+    padding: 4rem;
+}
+
+.contain img {
+    margin: auto 0;
+    height: 80%;
+}
+
+.contain p {
+    margin: auto 0;
+    font-weight: 400;
+    width: 65%;
+    margin-left: 10%;
+}
+
+.container_two {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    background-color: var(--div-color);
+    height: 70vh;
+    padding: 0 6rem;
+    color: var(--textcolor)
+}
+
+.container_three {
+    color: var(--text-black);
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    height: 70vh;
+    padding: 0 6rem;
+    gap: 3rem;
+}
+
+.container section {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 3rem;
+}
+
+.container_two section {
+    margin-top: 3rem;
+    gap: 3rem;
+
+}
+
+.container section p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    width: 90%;
+}
+
+.container_two section p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    width: 75%;
+    text-align: left;
+    padding-left: 8%;
+    margin-top: 4%;
+    margin-bottom: 3rem;
+}
+
+.container_two section a {
+    display: block;
+    margin-top: 4rem;
+    margin-left: 8%;
+}
+
+.container img {
+    margin: auto 0;
+}
+
+.container_two img {
+    margin: 10% 0 0 20%;
+    height: 60%;
+}
+
+.container_three img {
+    height: 60%;
+    margin-left: 10%;
+}
+
+.container_three p {
+    margin: 2% 0 0 2%;
+}
+
+.container_three a {
+    display: block;
+    margin: 5rem 0 0 2%;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    width: 80%;
+    line-height: 4.5rem;
+}
+
+#pres{
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+h2 {
+    font-size: 4em;
+    font-weight: 500;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
+    width: 90%;
+}
+
+.underline {
+    border-bottom: 4px solid var(--textcolor);
+}
+
+.underline-black {
+    border-bottom: 4px solid var(--text-black);
+}
+
+.bg-blue {
+    background-color: var(--background-color);
+    padding: 0.3rem;
+}
+
+.btn {
+    color: var(--textcolor);
+    padding: 1rem 4rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
+    font-size: 1.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+}
+
+.btn-api {
+    color: var(--textcolor)
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}
+
+.color-blue {
+    color: var(--background-color);
+}
+
+#menu li:first-of-type a {
+    color: var(--text-menu);
+}
+
+#titre-doc {
+    text-align: left;
+    margin-left: 1.5%;
+}
+
+#bienvenue {
+    margin: 0 auto;
+    margin-top: 3rem;
+    width: fit-content;
+}

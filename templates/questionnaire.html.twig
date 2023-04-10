@@ -1,0 +1,56 @@
+{%extends 'base.html.twig'%}
+
+{%block title%}Questionnaire{%endblock%}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/questionnaire.css') }}">
+{% endblock %}
+
+
+{%block body%}
+    <main>
+        <div id="tot">
+            <div id="left">
+                <p id="introduction">Au sein de ce questionnaire d'une dizaine de minutes vous allez répondre à une série de questions abordant l'injonction "Les hommes doivent cacher leurs émotions. En y répondant, vous acceptez que des données d'avancement soit récoltées afin d'avoir une sauvegarde de votre avancement en cas d'arrêt en cours.</p>
+                <a href="questions" class="btn-primary">Commencer le questionnaire</a>
+                <div class="h-captcha" data-sitekey="e3d30007-2d75-4b11-bc88-d6e008d81f5b"></div>
+            </div>
+            <img src="{{asset('pictures/Question.svg')}}" alt="homme qui se questionne">
+        </div>
+        <script src="https://hcaptcha.com/1/api.js" async defer></script>
+
+    </main>
+{%endblock%}
+
+
+{%block javascripts%}
+    <script>
+        // Récupérer la clé secrète du hCaptcha
+        const hCaptchaSecretKey = 'e3d30007-2d75-4b11-bc88-d6e008d81f5b';
+
+        // Récupérer la réponse du captcha soumise par l'utilisateur
+        const userCaptchaResponse = document.getElementById('h-captcha-response').value;
+
+        // Envoyer une requête HTTP POST à l'API hCaptcha pour vérifier la réponse du captcha
+        fetch('https://hcaptcha.com/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${hCaptchaSecretKey}&response=${userCaptchaResponse}`
+        })
+        .then(response => response.json())
+        .then(data => {
+        // Vérifier si la réponse du captcha est valide
+        if (data.success) {
+            // La réponse est valide, continuer avec la soumission du formulaire ou autre action
+            console.log('Captcha validé');
+        } else {
+            // La réponse est invalide, afficher un message d'erreur ou autre action
+            console.error('Échec de validation du captcha');
+        }
+        })
+        .catch(error => {
+        // Gérer les erreurs de requête
+        console.error('Erreur lors de la validation du captcha : ', error);
+        });
+    </script>
+{%endblock%}
