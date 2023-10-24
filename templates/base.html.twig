@@ -6,7 +6,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')}}">
         <script src="{{'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <script src="https://hcaptcha.com/1/api.js" async defer></script>
+        <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -22,16 +26,17 @@
                 <ul id="menu">
                     <li><a href="/" class="active">L'injonction</a></li>
                     <li><a href="questionnaire">Sondage</a></li>
-                    <li><a href="{}">Résultats</a></li>
-                </ul>
-                <ul id="lang">
-                    <li><a href="{}" class="active">FR</a></li>
-                    <li><a href="{}">EN</a></li>
+                    <li><a href="response">Résultats</a></li>
+                    <li><a href="api">API</a></li>
                 </ul>
             </nav>
         </header>
         {% block body %}
             <h1>{{title}}</h1>
         {% endblock %}
+
+        <footer>
+            <p>&copy Copyright Thibaut LEFEVRE - MMI 2 - 2023</p>
+        </footer>
     </body>
 </html>

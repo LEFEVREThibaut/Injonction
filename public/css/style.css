@@ -32,6 +32,7 @@ nav {
     background-color: var(--div-color);
     height: 10vh;
     padding-top: 2rem;
+    padding-bottom: 4rem;
 }
 ul {
     list-style: none;
@@ -57,6 +58,17 @@ ul li a {
     font-size: 1.5rem;
     color: var(--textcolor);
     font-weight: 900;
+}
+
+ul li a:hover {
+    animation: hover .5s forwards   ;
+}
+
+@keyframes hover {
+    
+    100% {
+        color: var(--text-menu);
+    }
 }
 
 .container {
@@ -238,6 +250,10 @@ p {
     color: var(--text-menu);
 }
 
+#lang li:first-of-type a {
+    color: var(--text-menu);
+}
+
 #titre-doc {
     text-align: left;
     margin-left: 1.5%;
@@ -247,4 +263,18 @@ p {
     margin: 0 auto;
     margin-top: 3rem;
     width: fit-content;
+}
+
+footer {
+    background-color: var(--div-color);
+    height: 10vh;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: var(--textcolor);
+    text-align: center;
+}
+footer p {
+    font-size: 1.2rem;
+    width: fit-content;
+    margin: 0 auto;
 }

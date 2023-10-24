@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Response;
+use App\Entity\Responses;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,10 +18,10 @@ class ResponseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Response::class);
+        parent::__construct($registry, Responses::class);
     }
 
-    public function save(Response $entity, bool $flush = false): void
+    public function save(Responses $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ResponseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Response $entity, bool $flush = false): void
+    public function remove(Responses $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

@@ -1,0 +1,799 @@
+{%extends 'base.html.twig'%}
+
+{%block title%}Graphique{%endblock%}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/graphiques.css') }}">
+{% endblock %}
+
+{%block body%}
+    <h2 id="top">Les résultats sociétaux</h2>
+    <div class="block">
+        <div class="graph">
+            <h3>Question 1 : Comment vous identifiez-vous ?</h3>
+            <canvas id="question1"></canvas>
+        </div>
+        <div class="graph">
+            <h3>Question 2 : Quel est votre âge ?</h3>
+            <canvas id="question2"></canvas>
+        </div>
+    </div>
+    <div class="block">
+        <div class="graph">
+            <h3>Question 5 : Quel est votre niveau d'étude ?</h3>
+            <canvas id="question5"></canvas>
+        </div>
+        
+        <div class="graph">
+            <h3>Question 6 : Quel est le salaire moyen par mois de vos deux parents réunis (€) ?</h3>
+            <canvas id="question6"></canvas>
+        </div>
+    </div>
+    <h2>Les résultats appuyant l'injonction</h2>
+    <div class="block">
+        <div class="graph">
+            <h3>Question 7 : Combien d'amis proches voyez-vous par semaine ?</h3>
+            <canvas id="question7"></canvas>
+        </div>
+
+        <div class="graph">
+            <h3>Question 8 : Avez-vous déjà été critiqué ou moqué pour avoir montré vos émotions en public ?</h3>
+            <canvas id="question8"></canvas>
+        </div>
+    </div>
+    <div class="block">
+        <div class="graph">
+            <h3>Question 9 : Ressentez-vous le besoin de camoufler vos émotions positives ?</h3>
+            <canvas id="question9"></canvas>
+        </div>
+
+        <div class="graph">
+            <h3>Question 12 : Où voyez-vous cette injonction le plus souvent ?</h3>
+            <canvas id="question12"></canvas>
+        </div>
+    </div>
+    <div class="block">
+        <div class="graph">
+            <h3>Question 14 : Qui pensez-vous que cette injonction affecte le plus ?</h3>
+            <canvas id="question14"></canvas>
+        </div>
+
+        <div class="graph">
+            <h3>Question 16 : Pensez-vous que les médias (films, séries TV, publicités, etc.) influencent cette injonction ?</h3>
+            <canvas id="question16"></canvas>
+        </div>
+    </div>
+
+    <div class="graph">
+        <h3>Question 17 : Pensez-vous que l'injonction "Les hommes ne doivent pas montrer leurs émotions" est en train de changer dans notre société ?</h3>
+        <canvas id="question17"></canvas>
+    </div>
+
+    <div onclick="scrollToTop()" class="monte scroll-to-top"><lord-icon
+        src="https://cdn.lordicon.com/xsdtfyne.json"
+        trigger="hover"
+        colors="primary:#fafafa"
+        state="hover-1"
+        style="width:50px;height:50px">
+    </lord-icon></div>
+    
+
+{%endblock%}
+
+{% block javascripts %}
+      <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+        window.addEventListener("DOMContentLoaded", function(event){
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                  document.querySelector('.scroll-to-top').style.display = 'block';
+                } else {
+                  document.querySelector('.scroll-to-top').style.display = 'none';
+                }
+              };
+        const ctx1 = document.getElementById('question1').getContext('2d');
+
+        fetch('http://127.0.0.1:8000/api?0=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question1"].length; i++) {
+                        if (!champs.includes(data[0]["question1"][i])) {
+                            champs.push(data[0]["question1"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question1"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question1"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx1, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    color: '#F0F0F0',
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'                    
+                    }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#F0F0F0'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+
+        const ctx2 = document.getElementById('question2').getContext('2d');
+
+        fetch('http://127.0.0.1:8000/api?1=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question2"].length; i++) {
+                        if (!champs.includes(data[0]["question2"][i])) {
+                            champs.push(data[0]["question2"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question2"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                new Chart(ctx2, {
+                    type: 'bar',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: 'Nombre de votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: 
+                            'rgba(54, 162, 235, 0.5)',
+                            borderColor: 
+                                'transparent'
+                        
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#F0F0F0'
+                        }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx5 = document.getElementById('question5').getContext('2d');
+
+        fetch('http://127.0.0.1:8000/api?4=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question5"].length; i++) {
+                        if (!champs.includes(data[0]["question5"][i])) {
+                            champs.push(data[0]["question5"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question5"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question5"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx5, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'
+                    }]
+                    },
+                    options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx6 = document.getElementById('question6').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?5=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question6"].length; i++) {
+                        if (!champs.includes(data[0]["question6"][i])) {
+                            champs.push(data[0]["question6"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question6"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                new Chart(ctx6, {
+                    type: 'bar',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: 'Nombre de votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: 
+                            'rgba(54, 162, 235, 0.5)',
+                            borderColor: 
+                                'transparent'
+                        
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#F0F0F0'
+                        }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx7 = document.getElementById('question7').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?6=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question7"].length; i++) {
+                        if (!champs.includes(data[0]["question7"][i])) {
+                            champs.push(data[0]["question7"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question7"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                new Chart(ctx7, {
+                    type: 'bar',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: 'Nombre de votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: 
+                            'rgba(54, 162, 235, 0.5)',
+                            borderColor: 
+                                'transparent'
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#F0F0F0'
+                        }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx8 = document.getElementById('question8').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?7=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question8"].length; i++) {
+                        if (!champs.includes(data[0]["question8"][i])) {
+                            champs.push(data[0]["question8"][i]);
+                            longueur.push(0);
+                        }
+                        data[0]["question8"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question8"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx8, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'
+                    }]
+                    },
+                    options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx9 = document.getElementById('question9').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?8=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question9"].length; i++) {
+                        if (!champs.includes(data[0]["question9"][i])) {
+                            champs.push(data[0]["question9"][i]);
+                            longueur.push(0);
+                        }
+                        data[0]["question9"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question9"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx9, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'
+                        
+                    }]
+                    },
+                    options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx12 = document.getElementById('question12').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?11=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question12"].length; i++) {
+                        if (!champs.includes(data[0]["question12"][i])) {
+                            champs.push(data[0]["question12"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question12"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                new Chart(ctx12, {
+                    type: 'bar',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: 'Nombre de votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: 
+                            'rgba(54, 162, 235, 0.5)',
+                            borderColor: 
+                                'transparent'
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#F0F0F0'
+                        }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx14 = document.getElementById('question14').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?13=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question14"].length; i++) {
+                        if (!champs.includes(data[0]["question14"][i])) {
+                            champs.push(data[0]["question14"][i]);
+                            longueur.push(0);
+                        }
+                        
+                        data[0]["question14"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                new Chart(ctx14, {
+                    type: 'bar',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: 'Nombre de votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: 
+                            'rgba(54, 162, 235, 0.5)',
+                            borderColor: 
+                                'transparent'
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#F0F0F0'
+                        }
+                        },
+                        x: {
+                            ticks: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx16 = document.getElementById('question16').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?15=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question16"].length; i++) {
+                        if (!champs.includes(data[0]["question16"][i])) {
+                            champs.push(data[0]["question16"][i]);
+                            longueur.push(0);
+                        }
+                        data[0]["question16"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question16"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx16, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'
+                    }]
+                    },
+                    options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            })
+
+            const ctx17 = document.getElementById('question17').getContext('2d');
+
+            fetch('http://127.0.0.1:8000/api?16=on')
+            .then(response =>{
+                if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur lors de la requête'); 
+                  }
+            })
+            .then(data => {
+                let longueur = [];
+                let champs = [];
+                j = 0;
+                rang = 0;
+                for (let i = 0; i < data[0]["question17"].length; i++) {
+                        if (!champs.includes(data[0]["question17"][i])) {
+                            champs.push(data[0]["question17"][i]);
+                            longueur.push(0);
+                        }
+                        data[0]["question17"].splice(i, -1);
+                        longueur[longueur.length - 1] += 1;
+                    
+                }
+                longueur.forEach (function(l) {
+                    longueur[j] = (l / data[0]["question17"].length) * 100;
+                    j++;
+                });
+                new Chart(ctx17, {
+                    type: 'doughnut',
+                    async: true,
+                    data: {
+                    labels: champs,
+                    datasets: [{
+                        label: '% de Votes',
+                        data: longueur,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)'
+                        ],
+                        borderColor: 
+                            'transparent'
+                    }]
+                    },
+                    options: {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#F0F0F0'
+                            }
+                        }
+                    }
+                    }
+                });
+            });
+        });
+        
+      </script>
+{%endblock%}

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Lato, sans-serif;
+}
+
+:root {
+    --textcolor: #F0F0F0;
+    --background-av: #c8c8c8;
+    --text-black: #1c1c1c;
+    --text-menu: #0474b2;
+    --text-active: #6AC9FF;
+    --div-color: #1E1E1E;
+    --background-color: #005686;
+}
+
+#menu li:first-of-type a {
+    color: var(--textcolor);
+}
+
+#menu li:nth-child(4) a {
+    color: var(--text-menu);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.monte {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    cursor: pointer;
+} 
+
+body {
+    background-color: var(--div-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 700;
+    margin: 4rem auto;
+    margin-bottom: 5rem;
+    color: var(--textcolor);
+    font-family: 'Schibsted Grotesk', sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+section {
+    margin: 1rem 0;
+    padding: 2rem;
+    border-radius: 0.7rem;
+    border: 1px solid var(--background-av);
+    background-color: rgba(57, 56, 56, 0.5);
+}
+
+#selectAll {
+    margin-left: 10.2rem;
+    margin-bottom: 2rem;
+}
+
+#button-top {
+    margin-top: -4.5rem;
+    margin-left: 25%;
+}
+
+label {
+    font-size: 1.15rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    color: var(--background-av);
+}
+
+input {
+    cursor: pointer;
+    transform: scale(1.7);
+}
+
+
+span {
+    margin-right: 2rem;
+}
+
+.decal {
+    margin-right: 2.6rem;
+}
+
+button {
+    margin-top: 3rem;
+    margin-left: 80%;
+    color: var(--textcolor);
+    padding: 1rem 2.5rem;
+    border-radius: 0.7rem;
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    text-decoration: none;
+    margin-bottom: 3rem;
+}
+
+button:hover {
+    background-color: transparent;
+    color: var(--background-color);
+}

@@ -2,20 +2,16 @@
 
 namespace App\Controller;
 
-use App\Form\TaskType;
-use App\Entity\Task;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Validator\Constraint as Assert;
 
 class ClasseController extends AbstractController
 
 {
    
-    #[Route('/', name: 'home')]
+    #[Route('/ ', name: 'home')]
     
    
 
@@ -36,16 +32,6 @@ class ClasseController extends AbstractController
         }
         return new Response($title);
     }
-   /* #[Route('/', name: 'home')]
-    public function createTask(): Response {
-        $task = new Task();
-        $task->setTask('Ma tâche pré-définie');
-        $form = $this->createForm(TaskType::class, $task);
-        return $this->render('presentation.html.twig', ['variable' => $form->createView()]);
-    }*/
-
-    
-
 }
 
 

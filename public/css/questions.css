@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -43,8 +43,7 @@ h1,
 h2,
 h2>span,
 h1>span {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-weight: bold;
+    font-family: 'Schibsted Grotesk', sans-serif;
 }
 
 main {
@@ -53,6 +52,12 @@ main {
     height: 100vh;
     position: fixed;
     text-align: center;
+}
+
+footer {
+    position: relative;
+    margin-top: 75vh;
+    background-color: transparent;
 }
 
 #menu {
@@ -109,6 +114,8 @@ input {
 
 #add {
     left: -15rem;
+    border: 3px solid var(--background-color);
+    background-color: transparent;
 }
 
 label {
@@ -116,13 +123,12 @@ label {
     padding: 1rem 2rem;
     border-radius: 0.7rem;
     border: 3px solid var(--background-color);
-    background-color: var(--background-color);
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     width: fit-content;
     text-decoration: none;
-    margin: 0 auto;
+    margin: 0 2rem;
 }
 
 input:checked {
@@ -134,8 +140,8 @@ input:checked {
     color: var(--textcolor);
     padding: 1rem 2rem;
     border-radius: 0.7rem;
-    border: 3px solid var(--text-menu);
-    background-color: var(--text-menu);
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
@@ -148,7 +154,6 @@ input:checked {
 
 .btn-primary:hover {
     background-color: transparent;
-    color: var(--background-color);
 }
 
 
@@ -166,7 +171,14 @@ input:checked {
     text-decoration: none;
     position: relative;
     left: 68rem;
-    top: -25rem;
+    top: -40rem;
+}
+
+#h {
+    position: relative;
+    left: 25rem;
+    margin-top: -24rem;
+    bottom: 8rem;  
 }
 
 #btn-secondary:hover {
@@ -174,12 +186,17 @@ input:checked {
     color: var(--background-color);
 }
 
+#merci {
+    margin-top: 20rem;
+    margin-bottom: 10rem;
+}
+
 #btn-thirdy {
     color: var(--textcolor);
     padding: 1rem 2rem;
     border-radius: 0.7rem;
-    border: 3px solid var(--text-menu);
-    background-color: var(--text-menu);
+    border: 3px solid var(--background-color);
+    background-color: var(--background-color);
     font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;

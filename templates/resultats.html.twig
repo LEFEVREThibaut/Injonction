@@ -3,9 +3,123 @@
 {%block title%}Questionnaire{%endblock%}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/questions.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
 {% endblock %}
 
 {%block body%}
+    <main>
+   <h1>Sélectionnez les questions auxquelles vous souhaitez avoir les données et commencez à utiliser l'API.</h1>
+   <input type="checkbox" id="selectAll">
+   <label for="selectAll">Tout sélectionner</label>
+    <form method="get" target="_blanck">
+        <button id="button-top">Télécharger le JSON</button>
+        <section>
+        <input type="checkbox" name="0" id="question1" checked>
+        <label for="question1"><span class="decal">1.</span> Comment vous identifiez-vous ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="1" id="question2">
+        <label for="question2"><span class="decal">2.</span> Quel est votre âge ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="2" id="question3">
+        <label for="question3"><span class="decal">3.</span> Quel est votre code postal ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="3" id="question4">
+        <label for="question4"><span class="decal">4.</span> Êtes-vous en étude actuellement ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="4" id="question5">
+        <label for="question5"><span class="decal">5.</span> Quel est votre niveau d'étude ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="5" id="question6">
+        <label for="question6"><span class="decal">6.</span> Quel est le salaire moyen par mois de vos deux parents réunis (€) ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="6" id="question7">
+        <label for="question7"><span class="decal">7.</span> Combien d'amis proches voyez-vous par semaine ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="7" id="question8">
+        <label for="question8"><span class="decal">8.</span> Avez-vous déjà été critiqué ou moqué pour avoir montré vos émotions en public ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="8" id="question3">
+        <label for="question9"><span class="decal">9.</span> Ressentez-vous le besoin de camoufler vos émotions positives ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="9" id="question10">
+        <label for="question10"><span>10.</span> Ressentez-vous le besoin de camoufler vos émotions négatives ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="10" id="question11">
+        <label for="question11"><span>11.</span> Avez-vous déjà observé quelqu'un cacher ses émotions ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="11" id="question12">
+        <label for="question12"><span>12.</span> Où voyez-vous cette injonction le plus souvent ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="12" id="question13">
+        <label for="question13"><span>13.</span> Les personnes concernées sont généralement ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="13" id="question14">
+        <label for="question14"><span>14.</span> Qui pensez-vous que cette injonction affecte le plus ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="14" id="question15">
+        <label for="question15"><span>15.</span> Selon vous, est-ce important pour les hommes de montrer leurs émotions ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="15" id="question16">
+        <label for="question16"><span>16.</span> Pensez-vous que les médias (films, séries TV, publicités, etc.) influencent cette injonction ?</label>
+        </section>
+        <section>
+        <input type="checkbox" name="16" id="question17">
+        <label for="question17"><span>17.</span> Pensez-vous que l'injonction "Les hommes ne doivent pas montrer leurs émotions" est en train de changer dans notre société ?</label>
+        </section>
 
+        <button>Télécharger le JSON</button>
+
+        <div onclick="scrollToTop()" class="monte scroll-to-top"><lord-icon
+            src="https://cdn.lordicon.com/xsdtfyne.json"
+            trigger="hover"
+            colors="primary:#fafafa"
+            state="hover-1"
+            style="width:50px;height:50px">
+        </lord-icon></div>
+    </form>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            window.onscroll = function() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                  document.querySelector('.scroll-to-top').style.display = 'block';
+                } else {
+                  document.querySelector('.scroll-to-top').style.display = 'none';
+                }
+              };
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const otherCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(#selectAll)');
+
+            selectAllCheckbox.addEventListener('change', function() {
+                otherCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+            });
+        });
+    </script>
 {% endblock %}

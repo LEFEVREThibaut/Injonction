@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Lato, sans-serif;
+}
+
+:root {
+    --textcolor: #F0F0F0;
+    --background-av: #c8c8c8;
+    --text-black: #1c1c1c;
+    --text-menu: #0474b2;
+    --text-active: #6AC9FF;
+    --div-color: #1E1E1E;
+    --background-color: #005686;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--div-color);
+}
+
+.monte {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    cursor: pointer;
+} 
+
+h1 {
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--textcolor);
+    margin-top: 4rem;
+}
+
+h2 {
+    width: fit-content;
+    margin: 0 8rem;
+    color: var(--textcolor);
+    margin-top: 3rem;
+    text-decoration: underline;
+}
+
+#menu li:first-of-type a {
+    color: var(--textcolor);
+}
+
+#menu li:nth-child(3) a {
+    color: var(--text-menu);
+}
+
+#question1 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+
+#question2 {
+    width: 40rem !important;
+    height: 20rem !important;
+}
+
+#question5 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+
+#question6 {
+    width: 40rem !important;
+    height: 20rem !important;
+}
+
+#question7 {
+    width: 40rem !important;
+    height: 20rem !important;
+}
+
+#question8 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+
+#question9 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+
+#question12 {
+    width: 40rem !important;
+    height: 20rem !important;
+}
+
+#question14 {
+    width: 40rem !important;
+    height: 20rem !important;
+}
+
+#question16 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+#question17 {
+    width: 20rem !important;
+    height: 20rem !important;
+}
+
+.graph {
+    margin: 4rem auto;
+    color: var(--textcolor);
+}
+
+.graph canvas {
+    margin: 0 auto;
+}
+
+.graph h3 {
+    font-weight: 700;
+    margin: 3rem auto;
+    max-width: 90%;
+    text-align: center;
+}
+
+.block {
+    display: flex;
+    gap: 10vw;
+    width: fit-content;
+    margin: 0 auto;
+    justify-content: space-around;
+    padding: 0 4rem;
+}
